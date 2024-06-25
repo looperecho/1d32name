@@ -66,6 +66,7 @@ def main():
     config = load_config(config_path)
     directory = config["directory"]
     print(f"Source folder  ▶  {style.magenta(directory)}")
+    input(f"\nHit {style.bold('Enter')} to continue...")
     process_files(directory)
     print(f"\n{style.green('Complete!')}")
     input("\nHit any key to exit...")
