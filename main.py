@@ -43,21 +43,21 @@ def get_tags(file):
         audio = EasyID3(file)
         artist_tag = audio.get("artist", [""])[0]        
         title_tag = audio.get("title", [""])[0]
+        return artist_tag, title_tag
     
     except ID3NoHeaderError as e:
-        filename = Path(file).stem
+        filename = os.path.basename(file)
         print(f"{style.yellow('Warning: ')}No ID3 tags found for {style.bold(filename)}")
-        artist_tag = "None"
-        title_tag = filename
-        
-    return artist_tag, title_tag
 
 # Rename files to [Artist - Title] ID3 tags
 def rename_file(file, directory):
-    artist_tag, title_tag = get_tags(file)
-    new_name = directory / f"{artist_tag} - {title_tag}.mp3"
-    os.rename(file, new_name)
-    print(f"└──── {style.blue(new_name.name)}")
+    try:
+        artist_tag, title_tag = get_tags(file)
+        new_name = directory / f"{artist_tag} - {title_tag}.mp3"
+        os.rename(file, new_name)
+        print(f"└──── {style.blue(new_name.name)}")
+    except TypeError:
+        pass
 
 # Loop dir for mp3 files, and rename
 def process_files(directory):
