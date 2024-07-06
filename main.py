@@ -45,9 +45,10 @@ def get_tags(file):
         title_tag = audio.get("title", [""])[0]
     
     except ID3NoHeaderError as e:
-        print(f"No ID3 tags found for {file}")
+        filename = Path(file).stem
+        print(f"{style.yellow('Warning: ')}No ID3 tags found for {style.bold(filename)}")
         artist_tag = "None"
-        title_tag = Path(file).stem
+        title_tag = filename
         
     return artist_tag, title_tag
 
