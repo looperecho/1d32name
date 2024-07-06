@@ -46,7 +46,7 @@ def get_tags(file):
         return artist_tag, title_tag
     
     except ID3NoHeaderError as e:
-        filename = os.path.basename(file)
+        filename = file.name
         print(f"{style.yellow('Warning: ')}No ID3 tags found for {style.bold(filename)}")
 
 # Rename files to [Artist - Title] ID3 tags
