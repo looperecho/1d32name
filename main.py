@@ -1,3 +1,4 @@
+import sys
 import os
 import json
 from mutagen.easyid3 import EasyID3
@@ -45,7 +46,7 @@ def get_tags(file):
         title_tag = audio.get("title", [""])[0]
         return artist_tag, title_tag
     
-    except ID3NoHeaderError as e:
+    except ID3NoHeaderError:
         filename = file.name
         print(f"{style.yellow('Warning: ')}No ID3 tags found for {style.bold(filename)}")
 
@@ -90,4 +91,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Exiting App...")
+        sys.exit()
