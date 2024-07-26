@@ -13,4 +13,6 @@ A quick script with a basic terminal CLI, to batch rename `.mp3` files based on 
 
 
 
->Note: Just using this repo as a backup
+>Note: Just using this repo as a backup  
+
+Compiled with [PyInstaller](https://github.com/pyinstaller/pyinstaller)
